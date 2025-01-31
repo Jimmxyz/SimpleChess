@@ -1,0 +1,56 @@
+#grid {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    gap: 2px;
+    background-color: #8a8a8a;
+    padding: 15px;
+    width: fit-content;
+    border-radius: 7px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(172, 172, 172);
+    border-radius: 3px;
+    display: flex;
+}
+
+.cell:hover{
+    animation: hoverCell 0.3s ease forwards;
+}
+
+.cell:active{
+    animation: activeCell 0.3s ease forwards;
+}
+
+@keyframes hoverCell {
+    0% {
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      transform: scale(1.2) translateY(-10px);
+    }
+}
+@keyframes activeCell {
+    0% {
+      transform: scale(1.2) translateY(-10px);
+    }
+    100% {
+      transform: scale(0.8) translateY(5px);
+    }
+}
+
+.black{
+    background-color: rgb(85, 85, 85) !important;
+}
+
+.white{
+    background-color: rgb(202, 202, 202) !important;
+}
+
+#gridContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
