@@ -144,7 +144,15 @@ function select(cellID){
         selectedPiece = pieceSearchGrid(cellID);
         let index = stringToNumber(cellID)
         if(getType(index[0],index[1]) === turn){
-            pawnScan(getType(index[0],index[1]),cellID)
+            if(logicGrid[index[0]][index[1]] === "p" || logicGrid[index[0]][index[1]] === "P"){
+                pawnScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "n" || logicGrid[index[0]][index[1]] === "N"){
+                knightScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "k" || logicGrid[index[0]][index[1]] === "K"){
+                kingScan(getType(index[0],index[1]),cellID)
+            }
             scanColorShow()
         }
     }
