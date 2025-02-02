@@ -54,3 +54,15 @@
     justify-content: center;
     padding: 20px;
 }
+
+.cell-blue {
+    background-color: rgb(0, 123, 255) !important;
+}
+
+.cell-yellow {
+    background-color: rgb(255, 193, 7) !important;
+}
+
+.cell-red {
+    background-color: rgb(220, 53, 69) !important;
+}

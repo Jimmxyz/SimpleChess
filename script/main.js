@@ -10,6 +10,7 @@ let logicGrid = [
 ];
 let selectedID = "Z0"; 
 let selectedPiece = "v";
+let turn = "w";
 function pieceSearchVisual(id = null){
     if(id === null){return "error"}
     try{
@@ -75,6 +76,17 @@ function convertLetterToVisual(idPiece){
         return "error"
     }
 }
+function getType(lin,col){
+    if(logicGrid[lin][col] === "k" || logicGrid[lin][col] === "q" || logicGrid[lin][col] === "r" || logicGrid[lin][col] === "n" || logicGrid[lin][col] === "b" || logicGrid[lin][col] === "p"){
+        return "w"
+    }
+    if(logicGrid[lin][col] === "K" || logicGrid[lin][col] === "Q" || logicGrid[lin][col] === "R" || logicGrid[lin][col] === "N" || logicGrid[lin][col] === "B" || logicGrid[lin][col] === "P"){
+        return "b"
+    }
+    else{
+        return "v"
+    }
+}
 function stringToNumber(position){
     if (position.length !== 2) {
         return { error: "Too long (or too short) string" };
@@ -117,6 +129,8 @@ function logicGridConvertToVisualGrid(){
 function select(cellID){
     if(cellID === selectedID){
         selectedID = "Z0";
+        refresh()
+        scanColorShow()
     }
     else if(selectedID !== "Z0"){
         moveControl(selectedPiece,selectedID,cellID);
@@ -128,6 +142,11 @@ function select(cellID){
         }
         selectedID = cellID;
         selectedPiece = pieceSearchGrid(cellID);
+        let index = stringToNumber(cellID)
+        if(getType(index[0],index[1]) === turn){
+            pawnScan(getType(index[0],index[1]),cellID)
+            scanColorShow()
+        }
     }
 }
 

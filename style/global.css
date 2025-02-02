@@ -1,3 +1,10 @@
 body{
     background-color: rgb(52, 52, 52);
 }
+#info{
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    color: rgb(255, 255, 255);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

@@ -19,5 +19,31 @@ function gridPrinter(){
         grid.appendChild(cell);
     }
 }
+function scanColorShow(){
+    for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+            const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            const cellId = columns[col] + (8 - row);
+            const cell = document.getElementById(cellId);
+            cell.classList.remove('cell-blue', 'cell-yellow', 'cell-red');
+            if (scanGrid[row][col] === " ") {
+                continue;
+            }
+            switch(scanGrid[row][col]) {
+                case "$":
+                    cell.classList.add('cell-blue');
+                    break;
+                case "?":
+                    cell.classList.add('cell-yellow');
+                    break;
+                case "!":
+                    cell.classList.add('cell-red');
+                    break;
+            }
+        }
+    }
+}
+
+
 
 gridPrinter()
