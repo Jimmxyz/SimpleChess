@@ -136,13 +136,13 @@ function select(cellID){
         moveControl(selectedPiece,selectedID,cellID);
     }
     else{
-        if(pieceSearchGrid(cellID) === "" || pieceSearchGrid(cellID) === " " || pieceSearchGrid(cellID) === "v"){
-            return
-        }
-        selectedID = cellID;
-        selectedPiece = pieceSearchGrid(cellID);
         let index = stringToNumber(cellID)
         if(getType(index[0],index[1]) === turn){
+            if(pieceSearchGrid(cellID) === "" || pieceSearchGrid(cellID) === " " || pieceSearchGrid(cellID) === "v"){
+                return
+            }
+            selectedID = cellID;
+            selectedPiece = pieceSearchGrid(cellID);
             if(logicGrid[index[0]][index[1]] === "p" || logicGrid[index[0]][index[1]] === "P"){
                 pawnScan(getType(index[0],index[1]),cellID)
             }
@@ -170,4 +170,3 @@ document.addEventListener("DOMContentLoaded", () => {
     logicGridConvertToVisualGrid();
     //alert("Warning :\nIt's a beta and some functionality are missing :\n- Victory Detection\n- Detection of king check\n- Rock\nAnd other.\nSome Bug cand Also appear.")
 });
-
