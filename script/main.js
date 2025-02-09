@@ -133,6 +133,31 @@ function select(cellID){
         scanColorShow()
     }
     else if(selectedID !== "Z0"){
+        let index = stringToNumber(cellID)
+        if(getType(index[0],index[1]) === turn){
+            selectedID = cellID;
+            selectedPiece = pieceSearchGrid(cellID);
+            if(logicGrid[index[0]][index[1]] === "p" || logicGrid[index[0]][index[1]] === "P"){
+                pawnScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "n" || logicGrid[index[0]][index[1]] === "N"){
+                knightScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "k" || logicGrid[index[0]][index[1]] === "K"){
+                kingScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "r" || logicGrid[index[0]][index[1]] === "R"){
+                rookScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "b" || logicGrid[index[0]][index[1]] === "B"){
+                bishopScan(getType(index[0],index[1]),cellID)
+            }
+            else if(logicGrid[index[0]][index[1]] === "q" || logicGrid[index[0]][index[1]] === "Q"){
+                queenScan(getType(index[0],index[1]),cellID)
+            }
+            scanColorShow()
+            return
+        }
         moveControl(selectedPiece,selectedID,cellID);
     }
     else{
@@ -168,5 +193,4 @@ function select(cellID){
 
 document.addEventListener("DOMContentLoaded", () => {
     logicGridConvertToVisualGrid();
-    //alert("Warning :\nIt's a beta and some functionality are missing :\n- Victory Detection\n- Detection of king check\n- Rock\nAnd other.\nSome Bug cand Also appear.")
 });

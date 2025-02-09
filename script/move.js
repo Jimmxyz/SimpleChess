@@ -16,6 +16,8 @@ function moveControl(pieceID,moveStartID,moveEndID){
             refresh()
             scanColorShow()
             turn = "b";
+            document.body.style.backgroundColor = "rgb(52, 52, 52)";
+            checkScan()
             document.getElementById('turnInfo').innerText = "Black turn"
         }
         else if(pieceID === "K" || pieceID === "Q" || pieceID === "R" || pieceID === "N" || pieceID === "B" || pieceID === "P" && turn === "b"){
@@ -23,6 +25,8 @@ function moveControl(pieceID,moveStartID,moveEndID){
             refresh()
             scanColorShow()
             turn = "w";
+            document.body.style.backgroundColor = "rgb(52, 52, 52)";
+            checkScan()
             document.getElementById('turnInfo').innerText = "White turn"
         }
     }
@@ -177,11 +181,15 @@ function knightScan(type,position){
 function kingScan(type,position){
     //type : w for white and b for black
     //position in form A2
+    let oponent;
+    if(type === "b"){
+        oponent = "w"
+    } else{ oponent = "b"}
     refresh();
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) !== type){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1] - 1,oponent) === false){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] - 1] = "!"
             }
@@ -191,7 +199,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== type){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1],oponent) === false){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1]] = "!"
             }
@@ -201,7 +209,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) !== type){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1] + 1,oponent) === false){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] + 1] = "!"
             }
@@ -211,7 +219,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0]){
-        if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== type){
+        if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0],indexMainPosition[1] - 1,oponent) === false){
             if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0]][indexMainPosition[1] - 1] = "!"
             }
@@ -221,7 +229,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0]){
-        if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== type){
+        if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0],indexMainPosition[1] + 1,oponent) === false){
             if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0]][indexMainPosition[1] + 1] = "!"
             }
@@ -231,32 +239,32 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0] + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) !== type){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1] - 1,oponent) === false){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 1] = "!"
             }
             else{
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 1] = "?"
             }
-        }
+        } 
     }
     if(indexMainPosition[1] && indexMainPosition[0]  + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== type){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1],oponent) === false){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== "v"){
-                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "!"
+                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "!";
             }
             else{
-                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "?"
+                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "?";
             }
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0]  + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) !== type){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1] + 1,oponent) === false){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) !== "v"){
-                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "!"
+                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "!";
             }
             else{
-                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "?"
+                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "?";
             }
         }
     }
@@ -553,7 +561,7 @@ function queenScan(type,position){
         if(indexMainPosition[1]  - index >= 0 && indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "!"
+                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "!";
                     index = 0;
                     break
                 }
@@ -572,7 +580,7 @@ function queenScan(type,position){
         if(indexMainPosition[1]  + index <= 7 && indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "!"
+                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "!";
                     index = 0;
                     break
                 }

@@ -9,4 +9,4 @@ Chess piece and favicon :
 
 ## License
 This Program is under the <a href="./LICENSE">MIT License</a>
-This means that anyone can use this code as they wish
+This means that anyone can use this code as they wish.

@@ -1,10 +1,18 @@
 body{
     background-color: rgb(52, 52, 52);
 }
+.nunito-sans-text{
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
+}
 #info{
     display: flex;
     justify-content: center;
     padding: 2px;
     color: rgb(255, 255, 255);
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

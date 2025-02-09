@@ -1,19 +1,220 @@
-#grid {
-    display: grid;
-    grid-template-columns: repeat(8, 50px);
-    gap: 2px;
-    background-color: #8a8a8a;
-    padding: 15px;
-    width: fit-content;
-    border-radius: 7px;
+@media (max-width: 201px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 17.5px);
+        gap: 0.7px;
+        background-color: #8a8a8a;
+        padding: 5.25px;
+        width: fit-content;
+        border-radius: 2.45px;
+    }
+    
+    .cell {
+        width: 17.5px;
+        height: 17.5px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 1.05px;
+        display: flex;
+    }   
+    
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 7px;
+    }
 }
-
-.cell {
-    width: 50px;
-    height: 50px;
-    background-color: rgb(172, 172, 172);
-    border-radius: 3px;
-    display: flex;
+@media (min-width: 200px) and (max-width: 251px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 20px);
+        gap: 0.8px;
+        background-color: #8a8a8a;
+        padding: 6px;
+        width: fit-content;
+        border-radius: 2.8px;
+    }
+    
+    .cell {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 1.2px;
+        display: flex;
+    }   
+    
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+    }
+}
+@media (min-width: 250px) and (max-width: 301px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 25px);
+        gap: 1px;
+        background-color: #8a8a8a;
+        padding: 7.5px;
+        width: fit-content;
+        border-radius: 3.5px;
+    }
+    
+    .cell {
+        width: 25px;
+        height: 25px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 1.5px;
+        display: flex;
+    }   
+    
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }    
+}
+@media (min-width: 300px) and (max-width: 351px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 30px);
+        gap: 1.2px;
+        background-color: #8a8a8a;
+        padding: 9px;
+        width: fit-content;
+        border-radius: 4.2px;
+    }
+    
+    .cell {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 1.8px;
+        display: flex;
+    }   
+    
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 12px;
+    }  
+}
+@media (min-width: 350px) and (max-width: 401px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 35px);
+        gap: 1.4px;
+        background-color: #8a8a8a;
+        padding: 10.5px;
+        width: fit-content;
+        border-radius: 4.9px;
+    }
+    
+    .cell {
+        width: 35px;
+        height: 35px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 2.1px;
+        display: flex;
+    }   
+    
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 14px;
+    }
+}
+@media (min-width: 400px) and (max-width: 501px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 40px);
+        gap: 1.6px;
+        background-color: #8a8a8a;
+        padding: 12px;
+        width: fit-content;
+        border-radius: 5.6px;
+    }
+    .cell {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 2.4px;
+        display: flex;
+    }   
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 16px;
+    }
+}
+@media (min-width: 500px) and (max-width: 601px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 45px);
+        gap: 1.8px;
+        background-color: #8a8a8a;
+        padding: 13.5px;
+        width: fit-content;
+        border-radius: 6.3px;
+    }
+    .cell {
+        width: 45px;
+        height: 45px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 2.7px;
+        display: flex;
+    }   
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 18px;
+    }
+}
+@media (min-width: 600px) and (max-width: 701px) {
+    /* The referance */
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 50px);
+        gap: 2px;
+        background-color: #8a8a8a;
+        padding: 15px;
+        width: fit-content;
+        border-radius: 7px;
+    }
+    .cell {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 3px;
+        display: flex;
+    }   
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+}
+@media (min-width: 700px) {
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 60px);
+        gap: 2.4px;
+        background-color: #8a8a8a;
+        padding: 18px;
+        width: fit-content;
+        border-radius: 8.4px;
+    }
+    .cell {
+        width: 60px;
+        height: 60px;
+        background-color: rgb(172, 172, 172);
+        border-radius: 3.5px;
+        display: flex;
+    }   
+    #gridContainer {
+        display: flex;
+        justify-content: center;
+        padding: 24px;
+    }
 }
 
 .cell:hover{
@@ -47,12 +248,6 @@
 
 .white{
     background-color: rgb(202, 202, 202) !important;
-}
-
-#gridContainer {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
 }
 
 .cell-blue {
