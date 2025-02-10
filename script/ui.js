@@ -9,7 +9,7 @@ function gridPrinter(){
         const col = i % 8;
         cell.id = columns[col] + (8 - row);
         cell.onclick = function() {
-            select(String(columns[col] + (8 - row))); // cellId sera comme 'A1', 'B2', etc.
+            select(String(columns[col] + (8 - row)));
         };
         if ((row + col) % 2 === 0) {
             cell.classList.add('white');
@@ -43,7 +43,11 @@ function scanColorShow(){
         }
     }
 }
-
+function showEatedPiece(){
+    for (let i of pieceEated) {
+       //Nothing here (yet)
+    }
+}
 
 
 gridPrinter()

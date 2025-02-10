@@ -10,6 +10,9 @@ function moveOrder(pieceID,moveStartID,moveEndID){
 };
 function moveControl(pieceID,moveStartID,moveEndID){
     indexID = stringToNumber(moveEndID);
+    if(getType(indexID[0],indexID[1]) !== "v"){
+        pieceEated.push(logicGrid[indexID[0]][indexID[1]])
+    }
     if(scanGrid[indexID[0]][indexID[1]] === "?" || scanGrid[indexID[0]][indexID[1]] === "!"){
         if(pieceID === "k" || pieceID === "q" || pieceID === "r" || pieceID === "n" || pieceID === "b" || pieceID === "p" && turn === "w"){        
             moveOrder(pieceID,moveStartID,moveEndID);
