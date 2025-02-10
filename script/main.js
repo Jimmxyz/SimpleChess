@@ -158,6 +158,9 @@ function select(cellID){
             scanColorShow()
             return
         }
+        if(getType(logicGrid[index[0],index[1]]) !== "v"){
+            console.log(logicGrid[index[0],index[1]]);
+        }
         moveControl(selectedPiece,selectedID,cellID);
     }
     else{
