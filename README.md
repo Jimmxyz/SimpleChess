@@ -1,5 +1,5 @@
 # SimpleChess
-The best simple and not optimized chess game.
+The best simple and not optimized (but at least it's work) chess game.
 
 ## Credit
 Created by me (<a href="https://github.com/Jimmxyz">@Jimmxyz</a> on Github)
