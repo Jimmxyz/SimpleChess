@@ -256,7 +256,7 @@ function secondLevelScan(row,col,oponent,gridForTest = logicGrid){
         else{index = 0; break}
     }
     //knight
-    if(col  - 2 <= 7 && row - 1 <= 7){
+    if(col  - 2 >= 0 && row - 1 >= 0){
         if(getType(row - 1,col - 2) !== type){
             if(getType(row - 1,col - 2) === oponent && ( gridForTest[row - 1][col - 2] === knightID)){
                 check = true
@@ -264,7 +264,7 @@ function secondLevelScan(row,col,oponent,gridForTest = logicGrid){
             }
         }
     }
-    if(col  - 2 <= 7 && row + 1 <= 7){
+    if(col  - 2 >= 0 && row + 1 <= 7){
         if(getType(row + 1,col - 2) !== type){
             if(getType(row + 1,col - 2) === oponent && ( gridForTest[row + 1][col - 2] === knightID)){
                 check = true
@@ -272,7 +272,7 @@ function secondLevelScan(row,col,oponent,gridForTest = logicGrid){
             }
         }
     }
-    if(col  - 1 <= 7 && row - 2 <= 7){
+    if(col  - 1 >= 0 && row - 2 >= 0){
         if(getType(row - 2,col - 1) !== type){
             if(getType(row - 2,col - 1) === oponent && ( gridForTest[row - 2][col - 1] === knightID)){
                 check = true
@@ -280,7 +280,7 @@ function secondLevelScan(row,col,oponent,gridForTest = logicGrid){
             }
         }
     }
-    if(col  - 1 <= 7 && row + 2 <= 7){
+    if(col  - 1 >= 0 && row + 2 <= 7){
         if(getType(row + 2,col - 1) !== type){
             if(getType(row + 2,col - 1) === oponent && ( gridForTest[row + 2][col - 1] === knightID)){
                 check = true
@@ -288,7 +288,7 @@ function secondLevelScan(row,col,oponent,gridForTest = logicGrid){
             }
         }
     }
-    if(col  + 2 <= 7 && row - 1 <= 7){
+    if(col  + 2 <= 7 && row - 1 >= 0){
         if(getType(row - 1,col + 2) !== type){
             if(getType(row - 1,col + 2) === oponent && ( gridForTest[row - 1][col + 2] === knightID)){
                 check = true
@@ -304,7 +304,7 @@ function secondLevelScan(row,col,oponent,gridForTest = logicGrid){
             }
         }
     }
-    if(col  + 1 <= 7 && row - 2 <= 7){
+    if(col  + 1 <= 7 && row - 2 >= 0){
         if(getType(row - 2,col + 1) !== type){
             if(getType(row - 2,col + 1) === oponent && ( gridForTest[row - 2][col + 1] === knightID)){
                 check = true
