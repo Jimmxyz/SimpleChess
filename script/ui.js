@@ -17,7 +17,7 @@ function gridPrinter(){
             cell.classList.add('black');
         }
         grid.appendChild(cell);
-    }
+    };
 }
 function scanColorShow(){
     for (let row = 0; row < 8; row++) {

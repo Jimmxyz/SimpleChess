@@ -1,4 +1,4 @@
-function moveOrder(pieceID,moveStartID,moveEndID,gridForTest = logicGrid){
+function moveOrder(pieceID,moveStartID,moveEndID){
     //Warning : do verification before calling this function
     console.log(pieceID + "\n" + moveStartID + " -> " + moveEndID)
     piecePlaceGrid(" ",moveStartID);
@@ -20,6 +20,7 @@ function moveControl(pieceID,moveStartID,moveEndID){
             scanColorShow()
             turn = "b";
             document.body.style.backgroundColor = "rgb(52, 52, 52)";
+            pawnToQueen()
             checkScan()
             document.getElementById('turnInfo').innerText = "Black turn"
         }
@@ -29,6 +30,7 @@ function moveControl(pieceID,moveStartID,moveEndID){
             scanColorShow()
             turn = "w";
             document.body.style.backgroundColor = "rgb(52, 52, 52)";
+            pawnToQueen()
             checkScan()
             document.getElementById('turnInfo').innerText = "White turn"
         }
@@ -192,7 +194,7 @@ function kingScan(type,position){
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1] - 1,oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) !== type){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] - 1] = "!"
             }
@@ -202,7 +204,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1],oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== type){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1]] = "!"
             }
@@ -212,7 +214,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1] + 1,oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) !== type){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] + 1] = "!"
             }
@@ -222,7 +224,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0]){
-        if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0],indexMainPosition[1] - 1,oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== type){
             if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0]][indexMainPosition[1] - 1] = "!"
             }
@@ -232,7 +234,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0]){
-        if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0],indexMainPosition[1] + 1,oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== type){
             if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0]][indexMainPosition[1] + 1] = "!"
             }
@@ -242,7 +244,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0] + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1] - 1,oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) !== type){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 1] = "!"
             }
@@ -252,7 +254,7 @@ function kingScan(type,position){
         } 
     }
     if(indexMainPosition[1] && indexMainPosition[0]  + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1],oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== type){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "!";
             }
@@ -262,7 +264,7 @@ function kingScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0]  + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1] + 1,oponent,logicGrid) === false){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) !== type){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "!";
             }
@@ -596,4 +598,20 @@ function queenScan(type,position){
         }
         else{index = 0; break}
     }
+}
+function pawnToQueen(){
+    //What?
+    //PAWN is evolving!
+    //Congratulation! Your PAWN evolved into QUEEN !
+    for(let i = 0; i < 8; i++){
+        if(logicGrid[0][i] === "p"){
+            logicGrid[0][i] = "q";
+        }
+    }
+    for(let i = 0; i < 8; i++){
+        if(logicGrid[7][i] === "P"){
+            logicGrid[7][i] = "Q";
+        }
+    }
+    logicGridConvertToVisualGrid()
 }
