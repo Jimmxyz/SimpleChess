@@ -69,41 +69,48 @@ function pawnScan(type,position){
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
     if(type === "w"){
         if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) === "v" && indexMainPosition[0] - 1 >= 0){
-            scanGrid[indexMainPosition[0] - 1][indexMainPosition[1]] = "?"
-            if(indexMainPosition[0] === 6 && getType(indexMainPosition[0] - 2,indexMainPosition[1]) === "v"){
+            if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 1,indexMainPosition[1],"b") === false){
+                scanGrid[indexMainPosition[0] - 1][indexMainPosition[1]] = "?"
+            };
+            if(indexMainPosition[0] === 6 && getType(indexMainPosition[0] - 2,indexMainPosition[1]) === "v" && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 2,indexMainPosition[1],"b") === false){
                 scanGrid[indexMainPosition[0] - 2][indexMainPosition[1]] = "?"
             }
         }
-        if(logicGrid[indexMainPosition[0] - 1][indexMainPosition[1] + 1] !== " " && getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) === "b"  && indexMainPosition[1] + 1 <= 7){
+        if(logicGrid[indexMainPosition[0] - 1][indexMainPosition[1] + 1] !== " " && getType(indexMainPosition[0] - 1,indexMainPosition[1] + 1) === "b"  && indexMainPosition[1] + 1 <= 7 && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 1,indexMainPosition[1] + 1,"b") === false){
             scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] + 1] = "!";
         }
-        if(logicGrid[indexMainPosition[0] - 1][indexMainPosition[1] - 1] !== " " && getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) === "b" && indexMainPosition[1] - 1 >= 0){
+        if(logicGrid[indexMainPosition[0] - 1][indexMainPosition[1] - 1] !== " " && getType(indexMainPosition[0] - 1,indexMainPosition[1] - 1) === "b" && indexMainPosition[1] - 1 >= 0 && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 1,indexMainPosition[1] - 1,"b") === false){
             scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] - 1] = "!";
         }
     }
     else if(type === "b"){
         if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) === "v" && indexMainPosition[0] + 1 <= 7){
-            scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "?"
-            if(indexMainPosition[0] === 1 && getType(indexMainPosition[0] + 2,indexMainPosition[1]) === "v"){
+            if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 1,indexMainPosition[1],"w") === false){
+                scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "?"
+            };
+            if(indexMainPosition[0] === 1 && getType(indexMainPosition[0] + 2,indexMainPosition[1]) === "v" && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 2,indexMainPosition[1],"w") === false){
                 scanGrid[indexMainPosition[0] + 2][indexMainPosition[1]] = "?"
             }
         }
-        if(logicGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] !== " " && getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) === "w" && indexMainPosition[1] + 1 <= 7){
+        if(logicGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] !== " " && getType(indexMainPosition[0] + 1,indexMainPosition[1] + 1) === "w" && indexMainPosition[1] + 1 <= 7 && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 1,indexMainPosition[1] + 1,"w") === false){
             scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "!"
         }
-        if(logicGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 1] !== " " && getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) === "w" && indexMainPosition[1] - 1 >= 0){
+        if(logicGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 1] !== " " && getType(indexMainPosition[0] + 1,indexMainPosition[1] - 1) === "w" && indexMainPosition[1] - 1 >= 0 && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 1,indexMainPosition[1] - 1,"w") === false){
             scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 1] = "!"
         }
-    }
-}
+    };
+};
 function knightScan(type,position){
     //type : w for white and b for black
     //position in form A2
+    let oponent;
+    if(type === "b"){oponent = "w"}
+    else{ oponent = "b" };
     refresh();
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0] - 2 >= 0){
-        if(getType(indexMainPosition[0] - 2,indexMainPosition[1] - 1) !== type){
+        if(getType(indexMainPosition[0] - 2,indexMainPosition[1] - 1) !== type && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 2,indexMainPosition[1] - 1,oponent) === false){
             if(getType(indexMainPosition[0] - 2,indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0] - 2][indexMainPosition[1] - 1] = "!"
             }
@@ -113,7 +120,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0] - 2 >= 0){
-        if(getType(indexMainPosition[0] - 2,indexMainPosition[1] + 1) !== type){
+        if(getType(indexMainPosition[0] - 2,indexMainPosition[1] + 1) !== type && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 2,indexMainPosition[1] + 1,oponent) === false){
             if(getType(indexMainPosition[0] - 2,indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0] - 2][indexMainPosition[1] + 1] = "!"
             }
@@ -123,7 +130,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] - 2 >= 0 && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 2) !== type){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 2) !== type  && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 1,indexMainPosition[1] - 2,oponent) === false){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1] - 2) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] - 2] = "!"
             }
@@ -133,7 +140,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] + 2 <= 7 && indexMainPosition[0] - 1 >= 0){
-        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 2) !== type){
+        if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 2) !== type  && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - 1,indexMainPosition[1] + 2,oponent) === false){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1] + 2) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1] + 2] = "!"
             }
@@ -143,7 +150,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0] + 2 <= 7){
-        if(getType(indexMainPosition[0] + 2,indexMainPosition[1] - 1) !== type){
+        if(getType(indexMainPosition[0] + 2,indexMainPosition[1] - 1) !== type  && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 2,indexMainPosition[1] - 1,oponent) === false){
             if(getType(indexMainPosition[0] + 2,indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0] + 2][indexMainPosition[1] - 1] = "!"
             }
@@ -153,7 +160,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0] + 2 <= 7){
-        if(getType(indexMainPosition[0] + 2,indexMainPosition[1] + 1) !== type){
+        if(getType(indexMainPosition[0] + 2,indexMainPosition[1] + 1) !== type  && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 2,indexMainPosition[1] + 1,oponent) === false){
             if(getType(indexMainPosition[0] + 2,indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0] + 2][indexMainPosition[1] + 1] = "!"
             }
@@ -163,7 +170,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] - 2 >= 0 && indexMainPosition[0] + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 2) !== type){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 2) !== type  && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 1,indexMainPosition[1] - 2,oponent) === false){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1] - 2) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] - 2] = "!"
             }
@@ -173,7 +180,7 @@ function knightScan(type,position){
         }
     }
     if(indexMainPosition[1] + 2 <= 7 && indexMainPosition[0] + 1 <= 7){
-        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 2) !== type){
+        if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 2) !== type  && setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + 1,indexMainPosition[1] + 2,oponent) === false){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1] + 2) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 2] = "!"
             }
@@ -186,10 +193,6 @@ function knightScan(type,position){
 function kingScan(type,position){
     //type : w for white and b for black
     //position in form A2
-    let oponent;
-    if(type === "b"){
-        oponent = "w"
-    } else{ oponent = "b"}
     refresh();
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
@@ -277,21 +280,33 @@ function kingScan(type,position){
 function rookScan(type,position){
     //type : w for white and b for black
     //position in form A2
+    let index;
     refresh();
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
+    let oponent;
+    if(type === "b"){
+        oponent = "w"
+    } else{ oponent = "b"}
     //TOP
     index = 1;
     while(index > 0 && index < 8){
+        
         if(indexMainPosition[0] - index >= 0){
+            
             if(getType(indexMainPosition[0] - index,indexMainPosition[1]) !== type){
                 if(getType(indexMainPosition[0] - index,indexMainPosition[1]) !== "v"){
-                    scanGrid[indexMainPosition[0] - index][indexMainPosition[1]] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1],oponent) === false){
+                        scanGrid[indexMainPosition[0] - index][indexMainPosition[1]] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1],oponent) === false){
                     scanGrid[indexMainPosition[0] - index][indexMainPosition[1]] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -305,12 +320,17 @@ function rookScan(type,position){
         if(indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1]) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1]) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1]] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1],oponent) === false){
+                        scanGrid[indexMainPosition[0] + index][indexMainPosition[1]] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if (setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1],oponent) === false){
                     scanGrid[indexMainPosition[0] + index][indexMainPosition[1]] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -324,12 +344,17 @@ function rookScan(type,position){
         if(indexMainPosition[1]  - index >= 0){
             if(getType(indexMainPosition[0],indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0],indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0]][indexMainPosition[1] - index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] - index,oponent) === false){
+                        scanGrid[indexMainPosition[0]][indexMainPosition[1] - index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] - index,oponent) === false){
                     scanGrid[indexMainPosition[0]][indexMainPosition[1] - index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -343,12 +368,17 @@ function rookScan(type,position){
         if(indexMainPosition[1]  + index <= 7){
             if(getType(indexMainPosition[0],indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0],indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0]][indexMainPosition[1] + index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] + index,oponent) === false){
+                        scanGrid[indexMainPosition[0]][indexMainPosition[1] + index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] + index,oponent) === false){
                     scanGrid[indexMainPosition[0]][indexMainPosition[1] + index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -363,18 +393,24 @@ function bishopScan(type,position){
     refresh();
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
+    let index;
     //TOP-LEFT
     index = 1;
     while(index > 0 && index < 8){
         if(indexMainPosition[1] - index >= 0 && indexMainPosition[0] - index >= 0){
             if(getType(indexMainPosition[0] - index,indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0] - index,indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0] - index][indexMainPosition[1] - index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] - index,oponent) === false){
+                        scanGrid[indexMainPosition[0] - index][indexMainPosition[1] - index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] - index,oponent) === false){
                     scanGrid[indexMainPosition[0] - index][indexMainPosition[1] - index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -388,12 +424,17 @@ function bishopScan(type,position){
         if(indexMainPosition[1]  + index <= 7 && indexMainPosition[0] - index >= 0){
             if(getType(indexMainPosition[0] - index,indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0] - index,indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0] - index][indexMainPosition[1] + index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] + index,oponent) === false){
+                        scanGrid[indexMainPosition[0] - index][indexMainPosition[1] + index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] + index,oponent) === false){
                     scanGrid[indexMainPosition[0] - index][indexMainPosition[1] + index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -407,12 +448,17 @@ function bishopScan(type,position){
         if(indexMainPosition[1]  - index >= 0 && indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] - index,oponent) === false){
+                        scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] - index,oponent) === false){
                     scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -426,12 +472,17 @@ function bishopScan(type,position){
         if(indexMainPosition[1]  + index <= 7 && indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] + index,oponent) === false){
+                        scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] + index,oponent) === false){
                     scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -446,18 +497,28 @@ function queenScan(type,position){
     refresh();
     let indexMainPosition = stringToNumber(position);
     scanGrid[indexMainPosition[0]][indexMainPosition[1]] = "$";
+    let oponent;
+    if(type === "b"){
+        oponent = "w"
+    } else{ oponent = "b"}
+    let index;
     //TOP
     index = 1;
     while(index > 0 && index < 8){
         if(indexMainPosition[0] - index >= 0){
             if(getType(indexMainPosition[0] - index,indexMainPosition[1]) !== type){
                 if(getType(indexMainPosition[0] - index,indexMainPosition[1]) !== "v"){
-                    scanGrid[indexMainPosition[0] - index][indexMainPosition[1]] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1],oponent) === false){
+                        scanGrid[indexMainPosition[0] - index][indexMainPosition[1]] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1],oponent) === false){
                     scanGrid[indexMainPosition[0] - index][indexMainPosition[1]] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -471,12 +532,17 @@ function queenScan(type,position){
         if(indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1]) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1]) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1]] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1],oponent) === false){
+                        scanGrid[indexMainPosition[0] + index][indexMainPosition[1]] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if (setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1],oponent) === false){
                     scanGrid[indexMainPosition[0] + index][indexMainPosition[1]] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -490,12 +556,17 @@ function queenScan(type,position){
         if(indexMainPosition[1]  - index >= 0){
             if(getType(indexMainPosition[0],indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0],indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0]][indexMainPosition[1] - index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] - index,oponent) === false){
+                        scanGrid[indexMainPosition[0]][indexMainPosition[1] - index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] - index,oponent) === false){
                     scanGrid[indexMainPosition[0]][indexMainPosition[1] - index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -509,12 +580,17 @@ function queenScan(type,position){
         if(indexMainPosition[1]  + index <= 7){
             if(getType(indexMainPosition[0],indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0],indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0]][indexMainPosition[1] + index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] + index,oponent) === false){
+                        scanGrid[indexMainPosition[0]][indexMainPosition[1] + index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0],indexMainPosition[1] + index,oponent) === false){
                     scanGrid[indexMainPosition[0]][indexMainPosition[1] + index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -528,12 +604,17 @@ function queenScan(type,position){
         if(indexMainPosition[1] - index >= 0 && indexMainPosition[0] - index >= 0){
             if(getType(indexMainPosition[0] - index,indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0] - index,indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0] - index][indexMainPosition[1] - index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] - index,oponent) === false){
+                        scanGrid[indexMainPosition[0] - index][indexMainPosition[1] - index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] - index,oponent) === false){
                     scanGrid[indexMainPosition[0] - index][indexMainPosition[1] - index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -547,12 +628,17 @@ function queenScan(type,position){
         if(indexMainPosition[1]  + index <= 7 && indexMainPosition[0] - index >= 0){
             if(getType(indexMainPosition[0] - index,indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0] - index,indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0] - index][indexMainPosition[1] + index] = "!"
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] + index,oponent) === false){
+                        scanGrid[indexMainPosition[0] - index][indexMainPosition[1] + index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] - index,indexMainPosition[1] + index,oponent) === false){
                     scanGrid[indexMainPosition[0] - index][indexMainPosition[1] + index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -566,12 +652,17 @@ function queenScan(type,position){
         if(indexMainPosition[1]  - index >= 0 && indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1] - index) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1] - index) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "!";
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] - index,oponent) === false){
+                        scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] - index,oponent) === false){
                     scanGrid[indexMainPosition[0] + index][indexMainPosition[1] - index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }
@@ -585,12 +676,17 @@ function queenScan(type,position){
         if(indexMainPosition[1]  + index <= 7 && indexMainPosition[0] + index <= 7){
             if(getType(indexMainPosition[0] + index,indexMainPosition[1] + index) !== type){
                 if(getType(indexMainPosition[0] + index,indexMainPosition[1] + index) !== "v"){
-                    scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "!";
+                    if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] + index,oponent) === false){
+                        scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "!"
+                    }
                     index = 0;
                     break
                 }
-                else{
+                else if(setInCheckVerification(indexMainPosition[0],indexMainPosition[1],indexMainPosition[0] + index,indexMainPosition[1] + index,oponent) === false){
                     scanGrid[indexMainPosition[0] + index][indexMainPosition[1] + index] = "?"
+                    index++;
+                }
+                else{
                     index++;
                 }
             }

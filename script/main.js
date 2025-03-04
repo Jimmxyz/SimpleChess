@@ -8,6 +8,16 @@ let logicGrid = [
     ["p","p","p","p","p","p","p","p",],
     ["r","n","b","q","k","b","n","r",],
 ];
+logicGrid = [
+    ["R","N","B","Q","K","B","N","R",],
+    ["P","P","P","P","P","P","P","P",],
+    [" "," "," "," "," "," "," "," ",],
+    [" "," "," "," "," "," "," "," ",],
+    [" "," "," "," "," "," "," "," ",],
+    [" "," "," "," "," "," "," "," ",],
+    ["p","p","p","p","p","p","p","p",],
+    ["r","n","b","r","k","b","n","r",],
+];
 let selectedID = "Z0"; 
 let selectedPiece = "v";
 let turn = "w";
@@ -77,11 +87,11 @@ function convertLetterToVisual(idPiece){
         return "error"
     }
 }
-function getType(lin,col){
-    if(logicGrid[lin][col] === "k" || logicGrid[lin][col] === "q" || logicGrid[lin][col] === "r" || logicGrid[lin][col] === "n" || logicGrid[lin][col] === "b" || logicGrid[lin][col] === "p"){
+function getType(lin,col,grid = logicGrid){
+    if(grid[lin][col] === "k" || grid[lin][col] === "q" || grid[lin][col] === "r" || grid[lin][col] === "n" || grid[lin][col] === "b" || grid[lin][col] === "p"){
         return "w"
     }
-    if(logicGrid[lin][col] === "K" || logicGrid[lin][col] === "Q" || logicGrid[lin][col] === "R" || logicGrid[lin][col] === "N" || logicGrid[lin][col] === "B" || logicGrid[lin][col] === "P"){
+    if(grid[lin][col] === "K" || grid[lin][col] === "Q" || grid[lin][col] === "R" || grid[lin][col] === "N" || grid[lin][col] === "B" || grid[lin][col] === "P"){
         return "b"
     }
     else{
@@ -124,8 +134,8 @@ function logicGridConvertToVisualGrid(){
     const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     for(let i = 63; i >= 0; i--){
         piecePlaceVisual(logicGrid[Math.floor(i / 8)][i % 8],String(columns[i % 8] + (8 - Math.floor(i / 8))))
-    }
-}
+    };
+};
 
 function select(cellID){
     if(cellID === selectedID){
