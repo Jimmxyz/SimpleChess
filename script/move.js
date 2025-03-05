@@ -220,7 +220,7 @@ function kingScan(type,position){
             }
         }
     }
-    if(indexMainPosition[1] && indexMainPosition[0] - 1 >= 0){
+    if(indexMainPosition[0] - 1 >= 0){
         if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== type && secondLevelScan(indexMainPosition[0] - 1,indexMainPosition[1],oponent,logicGrid) === false){
             if(getType(indexMainPosition[0] - 1,indexMainPosition[1]) !== "v"){
                 scanGrid[indexMainPosition[0] - 1][indexMainPosition[1]] = "!"
@@ -240,7 +240,7 @@ function kingScan(type,position){
             }
         }
     }
-    if(indexMainPosition[1] - 1 >= 0 && indexMainPosition[0]){
+    if(indexMainPosition[1] - 1 >= 0){
         if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== type && secondLevelScan(indexMainPosition[0],indexMainPosition[1] - 1,oponent,logicGrid) === false){
             if(getType(indexMainPosition[0],indexMainPosition[1] - 1) !== "v"){
                 scanGrid[indexMainPosition[0]][indexMainPosition[1] - 1] = "!"
@@ -250,7 +250,7 @@ function kingScan(type,position){
             }
         }
     }
-    if(indexMainPosition[1] + 1 <= 7 && indexMainPosition[0]){
+    if(indexMainPosition[1] + 1 <= 7){
         if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== type && secondLevelScan(indexMainPosition[0],indexMainPosition[1] + 1,oponent,logicGrid) === false){
             if(getType(indexMainPosition[0],indexMainPosition[1] + 1) !== "v"){
                 scanGrid[indexMainPosition[0]][indexMainPosition[1] + 1] = "!"
@@ -270,7 +270,7 @@ function kingScan(type,position){
             }
         } 
     }
-    if(indexMainPosition[1] && indexMainPosition[0]  + 1 <= 7){
+    if(indexMainPosition[0]  + 1 <= 7){
         if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== type && secondLevelScan(indexMainPosition[0] + 1,indexMainPosition[1],oponent,logicGrid) === false){
             if(getType(indexMainPosition[0] + 1,indexMainPosition[1]) !== "v"){
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1]] = "!";

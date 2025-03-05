@@ -44,34 +44,33 @@ function secondLevelScan(row,col,oponent,grid){
         bishopID = "b"
         queenID = "q"
         rookID = "r"
-        knightID = "N"
+        knightID = "n"
     };
     let check = false
-    if(oponent === "b" && row > 1){
-        if(col > 1){
+    if(oponent === "b" && row - 1 >= 0){
+        if(col - 1 >= 0){
             if(grid[row - 1][col - 1] === "P"){
                 check = true
-                //Solved
+                
             }
         }
-        if(col < 7){
+        if(col + 1 <= 7){
             if(grid[row - 1][col + 1] === "P"){
                 check = true
-                //Solved
+                
             }
         }
     }
-    if(oponent === "w" && row < 7){
-        if(col > 1){
+    if(oponent === "w" && row + 1 <= 7){
+        if(col - 1 >= 0){
             if(grid[row + 1][col - 1] === "p"){
                 check = true
-                //Solved
+                
             }
         }
-        if(col < 7){
+        if(col + 1 <= 7){
             if(grid[row + 1][col + 1] === "p"){
                 check = true
-                //Solved
             }
         }
     }
@@ -82,8 +81,7 @@ function secondLevelScan(row,col,oponent,grid){
         if(row - index >= 0){
             if(getType(row - index, col,grid) !== type){
                 if(getType(row - index,col,grid) === oponent && (grid[row - index][col] === rookID || grid[row - index][col] === queenID)){
-                    check = true
-                    //solved
+                    check = true 
                     index = 0;
                     break
                 }
@@ -106,7 +104,7 @@ function secondLevelScan(row,col,oponent,grid){
             if(getType(row + index,col,grid) !== type){
                 if(getType(row + index,col,grid) === oponent && (grid[row + index][col] === rookID || grid[row + index][col] === queenID)){
                     check = true
-                    //solved
+                    
                     
                     index = 0;
                     break
@@ -126,12 +124,10 @@ function secondLevelScan(row,col,oponent,grid){
     //LEFT
     index = 1;
     while(index > 0 && index < 8){
-        if(row - index >= 0){
+        if(col - index >= 0){
             if(getType(row,col - index,grid) !== type){
                 if(getType(row,col - index,grid) === oponent && (grid[row][col - index] === rookID || grid[row][col - index] === queenID)){
                     check = true
-                    //solved
-                    
                     index = 0;
                     break
                 }
@@ -154,7 +150,7 @@ function secondLevelScan(row,col,oponent,grid){
             if(getType(row,col + index) !== type){
                 if(getType(row,col + index,grid) === oponent && (grid[row][col + index] === rookID || grid[row][col + index] === queenID)){
                     check = true
-                    //solved
+                    
                     
                     index = 0;
                     break
@@ -178,7 +174,7 @@ function secondLevelScan(row,col,oponent,grid){
             if(getType(row - index,col - index,grid) !== type){
                 if(getType(row - index,col - index,grid) === oponent && (grid[row - index][col - index] === bishopID || grid[row - index][col - index] === queenID)){
                     check = true
-                    //solved
+                    
                     index = 0;
                     break
                 }
@@ -201,7 +197,7 @@ function secondLevelScan(row,col,oponent,grid){
             if(getType(row - index,col + index,grid) !== type){
                 if(getType(row - index,col + index,grid) === oponent && (grid[row - index][col + index] === bishopID || grid[row - index][col + index] === queenID)){
                     check = true
-                    //solved
+                    
 
                     index = 0;
                     break
@@ -225,7 +221,7 @@ function secondLevelScan(row,col,oponent,grid){
             if(getType(row + index,col - index, grid) !== type){
                 if(getType(row + index,col - index, grid) === oponent && (grid[row + index][col - index] === bishopID || grid[row + index][col - index] === queenID)){
                     check = true
-                    //solved
+                    
 
                     index = 0;
                     break
@@ -249,7 +245,7 @@ function secondLevelScan(row,col,oponent,grid){
             if(getType(row + index,col + index, grid) !== type){
                 if(getType(row + index,col + index, grid) === oponent && ( grid[row + index][col + index] === bishopID || grid[row + index][col + index] === queenID )){
                     check = true
-                    //solved
+                    
 
                     index = 0;
                     break
@@ -267,6 +263,7 @@ function secondLevelScan(row,col,oponent,grid){
         else{index = 0; break}
     }
     //knight
+    console.log(knightID)
     if(col  - 2 >= 0 && row - 1 >= 0){
         if(getType(row - 1,col - 2,grid) !== type){
             if(getType(row - 1,col - 2,grid) === oponent &&  grid[row - 1][col - 2] === knightID){
@@ -278,7 +275,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row + 1,col - 2,grid) !== type){
             if(getType(row + 1,col - 2,grid) === oponent &&  grid[row + 1][col - 2] === knightID){
                 check = true
-                //solved
             }
         }
     }
@@ -286,7 +282,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row - 2,col - 1,grid) !== type){
             if(getType(row - 2,col - 1,grid) === oponent && grid[row - 2][col - 1] === knightID){
                 check = true
-                //solved
             }
         }
     }
@@ -294,7 +289,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row + 2,col - 1,grid) !== type){
             if(getType(row + 2,col - 1,grid) === oponent && grid[row + 2][col - 1] === knightID){
                 check = true
-                //solved
             }
         }
     }
@@ -302,7 +296,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row - 1,col + 2,grid) !== type){
             if(getType(row - 1,col + 2,grid) === oponent &&  grid[row - 1][col + 2] === knightID){
                 check = true
-                //solved
             }
         }
     }
@@ -310,7 +303,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row + 1,col + 2,grid) !== type){
             if(getType(row + 1,col + 2,grid) === oponent &&  grid[row + 1][col + 2] === knightID){
                 check = true
-                //solved
             }
         }
     }
@@ -318,7 +310,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row - 2,col + 1,grid) !== type){
             if(getType(row - 2,col + 1,grid) === oponent &&  grid[row - 2][col + 1] === knightID){
                 check = true
-                //solved
             }
         }
     }
@@ -326,7 +317,6 @@ function secondLevelScan(row,col,oponent,grid){
         if(getType(row + 2,col + 1,grid) !== type){
             if(getType(row + 2,col + 1,grid) === oponent && grid[row + 2][col + 1] === knightID){
                 check = true
-                //solved
             }
         }
     }
