@@ -1,13 +1,13 @@
 function checkScan(){
     if(turn === "w"){
         if(firstLevelScan("k","b") === true){
-            console.log("Check for white");
+            console.log("CHECK_DETECTION : Check for white");
             document.body.style.backgroundColor = "rgb(220, 53, 69)";
         }
     }
     if(turn === "b"){
         if(firstLevelScan("K","w") === true){
-            console.log("Check for black");
+            console.log("CHECK_DETECTION : Check for black");
             document.body.style.backgroundColor = "rgb(220, 53, 69)";
         }
     }

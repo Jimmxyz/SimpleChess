@@ -8,16 +8,6 @@ let logicGrid = [
     ["p","p","p","p","p","p","p","p",],
     ["r","n","b","q","k","b","n","r",],
 ];
-logicGrid = [
-    ["R","N","B","Q","K","B","N","R",],
-    ["P","P","P","P","P","P","P","P",],
-    [" "," "," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-    ["p","p","p","p","p","p","p","p",],
-    ["r","n","b","r","k","b","n","r",],
-];
 let selectedID = "Z0"; 
 let selectedPiece = "v";
 let turn = "w";
@@ -114,6 +104,15 @@ function stringToNumber(position){
     }
     return [number,letterIndex]
 }
+function listToString(position){
+    if (position.length !== 2) {
+        return { error: "Too long (or too short) string" };
+    }
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    position[1] = letters[position[1]]
+    position = String(position[1]) + String(8 - position[0])
+    return position
+}
 function pieceSearchGrid(position) {
     index = stringToNumber(position);
     number = index[0];
@@ -201,7 +200,23 @@ function select(cellID){
         }
     }
 }
-
+function reset(){
+    let logicGrid = [
+        ["R","N","B","Q","K","B","N","R",],
+        ["P","P","P","P","P","P","P","P",],
+        [" "," "," "," "," "," "," "," ",],
+        [" "," "," "," "," "," "," "," ",],
+        [" "," "," "," "," "," "," "," ",],
+        [" "," "," "," "," "," "," "," ",],
+        ["p","p","p","p","p","p","p","p",],
+        ["r","n","b","q","k","b","n","r",],
+    ];
+    let selectedID = "Z0"; 
+    let selectedPiece = "v";
+    let turn = "w";
+    let pieceEated = [];
+    logicGridConvertToVisualGrid();
+}
 document.addEventListener("DOMContentLoaded", () => {
     logicGridConvertToVisualGrid();
 });
