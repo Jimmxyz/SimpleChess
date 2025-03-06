@@ -5,21 +5,89 @@
     <link rel="icon" type="image/x-icon" href="./item/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
-    <link href="./style/grid.css" rel="stylesheet">
-    <link href="./style/global.css" rel="stylesheet">
-    <script src="./script/ui.js" defer></script>
-    <script src="./script/move.js" defer></script>
-    <script src="./script/check.js" defer></script>
-    <script src="./script/victoryCondition.js" defer></script>
-    <script src="./script/main.js" defer></script>
     <title>Simple Chess</title>
 </head>
 <body>
-    <div id="info" class="nunito-sans-text">
-        <p id="turnInfo">White turn</p>
+    <style>
+        body{
+            background-color: rgb(52, 52, 52);
+        }
+        h1{
+            color: rgb(255, 255, 255);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+        }
+        p{
+            color: rgb(157, 157, 157);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+        }
+        a:visited{
+            color: rgb(157, 157, 157);
+        }
+        a{
+            color: rgb(157, 157, 157);
+        }
+        a:hover{
+            color: rgb(109, 109, 225);
+        }
+        #menu{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            text-align: center;
+            align-content: center;
+        }
+        #btn{
+            background-color: rgb(81, 81, 227);
+            border: 0px;
+            border-radius: 5px;
+            padding: 5px;
+            padding-right: 10px;
+            color: rgb(255, 255, 255);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-size: larger;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        #credit{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function newGame(){
+            window.location.replace("./chessGame.html");
+        }
+    </script>
+    <div id="menu">
+        <h1>Simple Chess</h1>
+        <button id="btn" onclick="newGame()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -1150 960 960" width="24px" fill="#e3e3e3"><path d="m560-240-56-58 142-142H160v-80h486L504-662l56-58 240 240-240 240Z"/></svg>New Game</button>
     </div>
-    <div id="gridContainer">
-        <div id="grid"></div>
-    </div>
+    <p id="credit">Created by Jimmy (<a href="https://github.com/Jimmxyz">@Jimmxyz</a> on Github)<br>Chess piece and favicon : 
+        <a href="https://commons.wikimedia.org/wiki/File:Chess_qdt45.svg">Cburnett</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via Wikimedia Commons (<a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">SVG chess pieces</a>)<br>This chess game is an free and open source program (the code is available on Github: <a href="https://github.com/Jimmxyz/SimpleChess">see the repository here</a>) under the <a href="https://github.com/Jimmxyz/SimpleChess/blob/main/LICENSE">MIT license</a></p>
 </body>
 </html>

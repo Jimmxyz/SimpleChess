@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./item/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link href="./style/grid.css" rel="stylesheet">
+    <link href="./style/global.css" rel="stylesheet">
+    <script src="./script/ui.js" defer></script>
+    <script src="./script/move.js" defer></script>
+    <script src="./script/check.js" defer></script>
+    <script src="./script/victoryCondition.js" defer></script>
+    <script src="./script/main.js" defer></script>
+    <title>Chess Game (Simple Chess)</title>
+</head>
+<body>
+    <div id="globalContainer">
+        <div id="info" class="nunito-sans-text">
+            <p id="turnInfo">White turn</p>
+        </div>
+        <div id="gridContainer">
+            <div id="grid"></div>
+        </div>
+    </div>
+    <div id="endMatchWindow">
+        <h1 id="winner">Victory</h1>
+        <h4 id="typeOfEnding">The white was stalemated</h4>
+        <br><br><br>
+        <button id="close" onclick="closeResult()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -1150 960 960" width="24px" fill="#e3e3e3"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>  Play New Game  </button>
+        <br><br>
+        <button id="back" onclick="back()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -1150 960 960" width="20px" fill="#e3e3e3"><path d="M288-192v-72h288q50 0 85-35t35-85q0-50-35-85t-85-35H330l93 93-51 51-180-180 180-180 51 51-93 93h246q80 0 136 56t56 136q0 80-56 136t-136 56H288Z"/></svg>  Go back to main menu  </button>
+    </div>
+</body>
+</html>

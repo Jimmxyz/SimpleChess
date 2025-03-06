@@ -8,16 +8,6 @@ let logicGrid = [
     ["p","p","p","p","p","p","p","p",],
     ["r","n","b","q","k","b","n","r",],
 ];
-logicGrid = [
-    ["K"," "," "," "," "," "," ","k",],
-    [" "," "," "," "," "," "," "," ",],
-    ["p"," "," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-    [" ","n"," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-    [" "," "," "," "," "," "," "," ",],
-];
 let selectedID = "Z0"; 
 let selectedPiece = "v";
 let turn = "w";
@@ -211,7 +201,9 @@ function select(cellID){
     }
 }
 function reset(){
-    let logicGrid = [
+    logicGrid = null;
+    logicGridConvertToVisualGrid();
+    logicGrid = [
         ["R","N","B","Q","K","B","N","R",],
         ["P","P","P","P","P","P","P","P",],
         [" "," "," "," "," "," "," "," ",],
@@ -221,11 +213,15 @@ function reset(){
         ["p","p","p","p","p","p","p","p",],
         ["r","n","b","q","k","b","n","r",],
     ];
-    let selectedID = "Z0"; 
-    let selectedPiece = "v";
-    let turn = "w";
-    let pieceEated = [];
+    selectedID = "Z0"; 
+    selectedPiece = "v";
+    turn = "w";
+    pieceEated = [];
     logicGridConvertToVisualGrid();
+}
+function showResult(){
+    document.getElementById('endMatchWindow').style.display = 'block';
+    document.getElementById('globalContainer').style.display = 'none';
 }
 document.addEventListener("DOMContentLoaded", () => {
     logicGridConvertToVisualGrid();

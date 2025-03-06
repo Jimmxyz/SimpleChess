@@ -263,7 +263,6 @@ function secondLevelScan(row,col,oponent,grid){
         else{index = 0; break}
     }
     //knight
-    console.log(knightID)
     if(col  - 2 >= 0 && row - 1 >= 0){
         if(getType(row - 1,col - 2,grid) !== type){
             if(getType(row - 1,col - 2,grid) === oponent &&  grid[row - 1][col - 2] === knightID){

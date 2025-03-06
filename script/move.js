@@ -23,7 +23,15 @@ function moveControl(pieceID,moveStartID,moveEndID){
             pawnToQueen()
             checkScan()
             if(IsPat("b") === true){
-                alert("Pat for black");
+                if(document.body.style.backgroundColor === "rgb(220, 53, 69)"){
+                    document.getElementById('winner').innerText = "Equality";
+                    document.getElementById('typeOfEnding').innerText = "Black was stalemated";
+                }
+                else{
+                    document.getElementById('winner').innerText = "Victory";
+                    document.getElementById('typeOfEnding').innerText = "Black has been checkmated";
+                }
+                showResult()
                 reset()
             }
             document.getElementById('turnInfo').innerText = "Black turn"
@@ -37,7 +45,15 @@ function moveControl(pieceID,moveStartID,moveEndID){
             pawnToQueen()
             checkScan()
             if(IsPat("w") === true){
-                alert("Pat for white");
+                if(document.body.style.backgroundColor === "rgb(220, 53, 69)"){
+                    document.getElementById('winner').innerText = "Equality";
+                    document.getElementById('typeOfEnding').innerText = "White was stalemated";
+                }
+                else{
+                    document.getElementById('winner').innerText = "Defeat";
+                    document.getElementById('typeOfEnding').innerText = "White has been checkmated";
+                }
+                showResult()
                 reset()
             }
             document.getElementById('turnInfo').innerText = "White turn"

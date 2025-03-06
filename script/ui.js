@@ -48,6 +48,17 @@ function showEatedPiece(){
        //Nothing here (yet)
     }
 }
+function showResult(){
+    document.getElementById('endMatchWindow').style.display = 'block';
+    document.getElementById('globalContainer').style.display = 'none';
+}
+function closeResult(){
+    document.getElementById('endMatchWindow').style.display = 'none';
+    document.getElementById('globalContainer').style.display = 'block';
+}
+function back(){
+    window.location.replace("./index.html");
+}
 
 
 gridPrinter()
