@@ -1,6 +1,9 @@
 # SimpleChess
 The best simple and not optimized (but at least it's work) chess game.
 
+## Server side
+Not yet available
+
 ## Credit
 Created by me (<a href="https://github.com/Jimmxyz">@Jimmxyz</a> on Github)
 
