@@ -9,6 +9,9 @@ function moveOrder(pieceID,moveStartID,moveEndID){
     selectedID = "Z0";
 };
 function moveControl(pieceID,moveStartID,moveEndID){
+    if(timerState === false){
+        timerLaunch()
+    }
     indexID = stringToNumber(moveEndID);
     if(getType(indexID[0],indexID[1]) !== "v"){
         pieceEated.push(logicGrid[indexID[0]][indexID[1]])
@@ -31,6 +34,7 @@ function moveControl(pieceID,moveStartID,moveEndID){
                     document.getElementById('winner').innerText = "Victory";
                     document.getElementById('typeOfEnding').innerText = "Black has been checkmated";
                 }
+                endTimer()
                 showResult()
                 reset()
             }
@@ -53,6 +57,7 @@ function moveControl(pieceID,moveStartID,moveEndID){
                     document.getElementById('winner').innerText = "Defeat";
                     document.getElementById('typeOfEnding').innerText = "White has been checkmated";
                 }
+                endTimer()
                 showResult()
                 reset()
             }

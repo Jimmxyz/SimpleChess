@@ -60,5 +60,86 @@ function back(){
     window.location.replace("./index.html");
 }
 
+let timer;
+let blackTimer;
+let whiteTimer;
+let timerState = false
+function timerLaunch(){
+    blackTimer = 600
+    whiteTimer = 600
+    timerState = true
+    timer = setInterval(() => {
+        if(turn === "w"){
+            whiteTimer--;
+        }
+        else if(turn === "b"){
+            blackTimer--;
+        }
+        else{
+            endTimer()
+        }
+        showTimer()
+    },1000)
+}
+function endTimer(){
+    clearInterval(timer);
+    timerState = false
+}
+function showTimer(){
+    if(whiteTimer <= 0){
+        document.getElementById('winner').innerText = "Defeat";
+        document.getElementById('typeOfEnding').innerText = "White is out of time";
+        endTimer()
+        showResult()
+        reset()
+    }
+    let secW = whiteTimer % 60
+    let minW = parseInt((whiteTimer - secW)/60)
+    if(secW < 10){
+        secW = "0" + String(secW)
+    }
+    else{
+        secW = String(secW)
+    }
+    if(minW < 10){
+        minW = "0" + String(minW)
+    }
+    else{
+        minW = String(minW)
+    }
+    if(turn === "w"){
+        document.getElementById('timerInfoActive').innerText = minW + ":" + secW;
+    }
+    else{
+        document.getElementById('timerInfoSleep').innerText = "/" + minW + ":" + secW;
+    }
+    if(blackTimer <= 0){
+        document.getElementById('winner').innerText = "Victory";
+        document.getElementById('typeOfEnding').innerText = "Black is out of time";
+        endTimer()
+        showResult()
+        reset()
+    }
+    let secB = blackTimer % 60
+    let minB = parseInt((blackTimer - secB)/60)
+    if(secB < 10){
+        secB = "0" + String(secB)
+    }
+    else{
+        secB = String(secB)
+    }
+    if(minB < 10){
+        minB = "0" + String(minB)
+    }
+    else{
+        minB = String(minB)
+    }
+    if(turn === "b"){
+        document.getElementById('timerInfoActive').innerText = minB + ":" + secB;
+    }
+    else{
+        document.getElementById('timerInfoSleep').innerText = "/" + minB + ":" + secB;
+    }
+}
 
 gridPrinter()

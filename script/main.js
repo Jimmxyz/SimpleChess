@@ -225,4 +225,7 @@ function showResult(){
 }
 document.addEventListener("DOMContentLoaded", () => {
     logicGridConvertToVisualGrid();
+    blackTimer = 600;
+    whiteTimer = 600;
+    showTimer()
 });

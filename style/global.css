@@ -13,8 +13,36 @@ body{
 #info{
     display: flex;
     justify-content: center;
-    padding: 2px;
     color: rgb(255, 255, 255);
+}
+#turnInfo{
+    font-size: larger;
+}
+#timerContainer{
+    display: flex;
+    justify-content: center;
+}
+#timerInfoActive{
+    color: rgb(255, 255, 255);
+    font-size: large;
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
+}
+#timerInfoSleep{
+    color: rgb(255, 255, 255);
+    font-size: x-small;
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
 }
 #endMatchWindow{
     display: none;
