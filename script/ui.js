@@ -36,6 +36,9 @@ function scanColorShow(){
                 case "?":
                     cell.classList.add('cell-yellow');
                     break;
+                case "#":
+                    cell.classList.add('cell-yellow');
+                    break;
                 case "!":
                     cell.classList.add('cell-red');
                     break;

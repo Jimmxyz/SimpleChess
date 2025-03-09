@@ -12,6 +12,12 @@ let selectedID = "Z0";
 let selectedPiece = "v";
 let turn = "w";
 let pieceEated = [];
+let rookRightW = true;
+let rookLeftW = true;
+let rookRightB = true;
+let rookLeftB = true;
+let kingW = true
+let kingB = true
 function pieceSearchVisual(id = null){
     if(id === null){return "error"}
     try{
@@ -217,6 +223,12 @@ function reset(){
     selectedPiece = "v";
     turn = "w";
     pieceEated = [];
+    rookRightW = true;
+    rookLeftW = true;
+    rookRightB = true;
+    rookLeftB = true;
+    kingW = true
+    kingB = true
     logicGridConvertToVisualGrid();
 }
 function showResult(){

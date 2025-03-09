@@ -16,11 +16,25 @@ function moveControl(pieceID,moveStartID,moveEndID){
     if(getType(indexID[0],indexID[1]) !== "v"){
         pieceEated.push(logicGrid[indexID[0]][indexID[1]])
     }
-    if(scanGrid[indexID[0]][indexID[1]] === "?" || scanGrid[indexID[0]][indexID[1]] === "!"){
+    if(scanGrid[indexID[0]][indexID[1]] === "?" || scanGrid[indexID[0]][indexID[1]] === "!" || scanGrid[indexID[0]][indexID[1]] === "#"){
         if(pieceID === "k" || pieceID === "q" || pieceID === "r" || pieceID === "n" || pieceID === "b" || pieceID === "p" && turn === "w"){        
             moveOrder(pieceID,moveStartID,moveEndID);
+            if(scanGrid[indexID[0]][indexID[1]] === "#" && index[0] === 7){
+                if(index[1] === 2){
+                    moveOrder("r",listToString([7,0]),listToString([7,3]));
+                }
+                else if(index[1] === 6){
+                    moveOrder("r",listToString([7,7]),listToString([7,5]));
+                }
+            }
             refresh()
             scanColorShow()
+            if(logicGrid[0][0] !== "R"){rookLeftB = false}
+            if(logicGrid[0][7] !== "R"){rookRightB = false}
+            if(logicGrid[7][0] !== "r"){rookLeftW = false}
+            if(logicGrid[7][7] !== "r"){rookRightW = false}
+            if(logicGrid[7][4] !== "k"){kingW = false}
+            if(logicGrid[0][4] !== "K"){kingB = false}
             turn = "b";
             document.body.style.backgroundColor = "rgb(52, 52, 52)";
             pawnToQueen()
@@ -42,6 +56,14 @@ function moveControl(pieceID,moveStartID,moveEndID){
         }
         else if(pieceID === "K" || pieceID === "Q" || pieceID === "R" || pieceID === "N" || pieceID === "B" || pieceID === "P" && turn === "b"){
             moveOrder(pieceID,moveStartID,moveEndID);
+            if(scanGrid[indexID[0]][indexID[1]] === "#" && index[0] === 0){
+                if(index[1] === 2){
+                    moveOrder("R",listToString([0,0]),listToString([0,3]));
+                }
+                else if(index[1] === 6){
+                    moveOrder("R",listToString([0,7]),listToString([0,5]));
+                }
+            }
             refresh()
             scanColorShow()
             turn = "w";
@@ -308,6 +330,51 @@ function kingScan(type,position){
             }
             else{
                 scanGrid[indexMainPosition[0] + 1][indexMainPosition[1] + 1] = "?";
+            }
+        }
+    }
+    //Castling
+    if(type === "w" && kingW === true){
+        if(rookRightW === true){
+            //Small castling
+            if(firstLevelScan("k","b")===false){
+                if(logicGrid[7][5] === " " && logicGrid[7][6] === " "){
+                    if(secondLevelScan(7,5,"b",logicGrid) === false && secondLevelScan(7,6,"b",logicGrid) === false){
+                        scanGrid[7][6] = "#";
+                    }
+                }
+            }
+        }
+        if(rookLeftW === true){
+            //big castling
+            if(firstLevelScan("k","b")===false){
+                if(logicGrid[7][3] === " " && logicGrid[7][2] === " "){
+                    if(secondLevelScan(7,3,"b",logicGrid) === false && secondLevelScan(7,2,"b",logicGrid) === false){
+                        scanGrid[7][2] = "#";
+                    }
+                }
+            }
+        }
+    }
+    if(type === "b" && kingB === true){
+        if(rookRightB === true){
+            //Small castling
+            if(firstLevelScan("K","w")===false){
+                if(logicGrid[0][5] === " " && logicGrid[0][6] === " "){
+                    if(secondLevelScan(0,5,"w",logicGrid) === false && secondLevelScan(0,6,"w",logicGrid) === false){
+                        scanGrid[0][6] = "#";
+                    }
+                }
+            }
+        }
+        if(rookLeftB === true){
+            //big castling
+            if(firstLevelScan("K","w")===false){
+                if(logicGrid[0][3] === " " && logicGrid[0][2] === " "){
+                    if(secondLevelScan(0,3,"w",logicGrid) === false && secondLevelScan(0,2,"w",logicGrid) === false){
+                        scanGrid[0][2] = "#";
+                    }
+                }
             }
         }
     }
