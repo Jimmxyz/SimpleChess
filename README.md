@@ -1,6 +1,17 @@
 # SimpleChess
 The best simple and not optimized (but at least it's work) chess game.
 
+>[!WARNING] 
+>Simple Chess is still under development, some features are missing
+
+## How play it ?
+Try with github pages : <a href="jimmxyz.github.io/SimpleChess/">jimmxyz.github.io/SimpleChess/</a>
+
+Or download the files and open `index.html` in your browser 
+
+## Server side
+Not yet available
+
 ## Credit
 Created by me (<a href="https://github.com/Jimmxyz">@Jimmxyz</a> on Github)
 
