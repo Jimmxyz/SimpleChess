@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./item/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <title>Settings (Simple Chess)</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: rgb(52, 52, 52);
+        }
+        h1{
+            color: rgb(255, 255, 255);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+        }
+        h3{
+            color: rgb(255, 255, 255);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+        }
+        p{
+            color: rgb(157, 157, 157);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+        }
+        a:visited{
+            color: rgb(157, 157, 157);
+        }
+        a{
+            color: rgb(157, 157, 157);
+        }
+        a:hover{
+            color: rgb(109, 109, 225);
+        }
+        #menu{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            text-align: center;
+            align-content: center;
+        }
+        #btn{
+            background-color: rgb(81, 81, 227);
+            border: 0px;
+            border-radius: 5px;
+            padding: 5px;
+            padding-right: 10px;
+            color: rgb(255, 255, 255);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            font-size: larger;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        #credit{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+        @media (min-width: 850px) and (max-width: 1035px) {
+            #credit{
+                font-size: small;
+                font-weight: 600;
+            }
+        }
+        @media (min-width: 700px) and (max-width: 850px) {
+            #credit{
+                font-size: x-small;
+                font-weight: 500;
+            }
+        }
+        @media (max-width: 700px) {
+            #credit{
+                font-size: xx-small;
+                font-weight: 400;
+            }
+        }
+        #back{
+            background-color: rgb(227, 81, 81);
+            border: 0px;
+            border-radius: 3px;
+            padding: 1px;
+            padding-top: 0px ;
+            padding-right: 6px;
+            color: rgb(255, 255, 255);
+            font-family: "Nunito Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+            font-size: smaller;
+            font-variation-settings:
+              "wdth" 100,
+              "YTLC" 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 80%;
+        }
+        #back:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        /*From : https://uiverse.io/Na3ar-17/fast-turtle-85*/
+        .radio-input {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .radio-input * {
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+        }
+
+        .radio-input label {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 0px 20px;
+          width: 220px;
+          cursor: pointer;
+          height: 50px;
+          position: relative;
+        }
+
+        .radio-input label::before {
+          position: absolute;
+          content: "";
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 220px;
+          height: 45px;
+          z-index: -1;
+          transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          border-radius: 10px;
+          border: 2px solid transparent;
+        }
+        .radio-input label:hover::before {
+          transition: all 0.2s ease;
+          background-color: #2a2e3c;
+        }
+
+        .radio-input .label:has(input:checked)::before {
+          background-color: #2d3750;
+          border-color: rgb(81, 81, 227);
+          height: 50px;
+        }
+        .radio-input .label .text {
+          color: #fff;
+        }
+
+        .radio-input .label input[type="radio"] {
+          background-color: #202030;
+          appearance: none;
+          width: 17px;
+          height: 17px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .radio-input .label input[type="radio"]:checked {
+          background-color: rgb(81, 81, 227);
+          -webkit-animation: puls 0.7s forwards;
+          animation: pulse 0.7s forwards;
+        }
+
+        .radio-input .label input[type="radio"]:before {
+          content: "";
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+          background-color: #fff;
+          transform: scale(0);
+        }
+
+        .radio-input .label input[type="radio"]:checked::before {
+          transform: scale(1);
+        }
+
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+          }
+          70% {
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          }
+        }
+    </style>
+    <script>
+        function goBack(){
+            window.location.replace("./index.html");
+        }
+    </script>
+    <div id="menu">
+        <h1>Settings :</h1>
+        <p style="color: rgb(241, 180, 24); text-decoration: underline;">beta version</p>
+        <h3>Rules of 50 :</h3>
+        <div class="radio-input">
+            <label class="label">
+              <input
+                type="radio"
+                id="value-1"
+                checked=""
+                name="value-radio"
+                value="value-1"
+              />
+              <p class="text">50</p>
+            </label>
+            <label class="label">
+              <input type="radio" id="value-2" name="value-radio" value="value-2" />
+              <p class="text">75</p>
+            </label>
+            <label class="label">
+              <input type="radio" id="value-3" name="value-radio" value="value-3" />
+              <p class="text">100</p>
+            </label>
+          </div>
+          <br>
+        <button id="back" onclick="goBack()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -1150 960 960" width="20px" fill="#e3e3e3"><path d="M288-192v-72h288q50 0 85-35t35-85q0-50-35-85t-85-35H330l93 93-51 51-180-180 180-180 51 51-93 93h246q80 0 136 56t56 136q0 80-56 136t-136 56H288Z"/></svg>Quit Settings</button>
+    </div>
+    <p id="credit">Created by Jimmy (<a href="https://github.com/Jimmxyz">@Jimmxyz</a> on Github)<br>Chess piece and favicon : 
+        <a href="https://commons.wikimedia.org/wiki/File:Chess_qdt45.svg">Cburnett</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via Wikimedia Commons (<a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">SVG chess pieces</a>)<br>This chess game is an free and open source program (the code is available on Github: <a href="https://github.com/Jimmxyz/SimpleChess">see the repository here</a>) under the <a href="https://github.com/Jimmxyz/SimpleChess/blob/main/LICENSE">MIT license</a></p>
+</body>
+</html>
