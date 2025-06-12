@@ -144,5 +144,7 @@ function showTimer(){
         document.getElementById('timerInfoSleep').innerText = "/" + minB + ":" + secB;
     }
 }
-
+function backToHome(){
+  window.location.replace("./index.html");
+}
 gridPrinter()
